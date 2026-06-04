@@ -1,4 +1,5 @@
 import './App.css'
+import qrKickoff from './assets/qr-ai-kickoff.png'
 
 function App() {
   return (
@@ -9,16 +10,16 @@ function App() {
         <h1>AI Taskforce er etableret</h1>
 
         <p className="subtitle">
-          Vi samler en tvargaende erfaringsgruppe i Education, sa vi struktureret,
-          konkret og kritisk kan skabe mere vaerdi med AI i vores daglige arbejde.
+          Vi samler en tværgående erfaringsgruppe i Education, så vi struktureret,
+          konkret og kritisk kan skabe mere værdi med AI i vores daglige arbejde.
         </p>
 
         <div className="slide-layout">
           <section className="content-block">
-            <h2>Formal og fokus</h2>
+            <h2>Formål og fokus</h2>
             <ul className="purpose-list">
               <li>
-                Opbygge erfaringer med AI som vaerktoj i udvikling, samarbejde og
+                Opbygge erfaringer med AI som værktøj i udvikling, samarbejde og
                 processer.
               </li>
               <li>
@@ -34,32 +35,16 @@ function App() {
           <aside className="qr-panel" aria-label="Kickoff input via QR">
             <h2>Input til kickoff</h2>
             <p>
-              Del datoonsker, ideer, spørgsmål og forslag til use cases via
+              Del datoønsker, ideer, spørgsmål og forslag til use cases via
               QR-koden.
             </p>
 
-            <div className="qr-box" role="img" aria-label="QR-kode til kickoff input">
-              <div className="qr-grid" aria-hidden="true" />
-              <span>Scan QR her</span>
+            <div className="qr-box">
+              <img src={qrKickoff} alt="QR-kode til input om kickoff" className="qr-image" />
             </div>
 
-            <p className="deadline">Svar gerne senest 4. juni</p>
+            <p className="deadline">Svar gerne senest 9. juni</p>
           </aside>
-        </div>
-
-        <div className="feature-grid">
-          <div className="feature-card">
-            <h2>Retning</h2>
-            <p>Faelles retning, arbejdsform og prioriterede emner for taskforcen.</p>
-          </div>
-          <div className="feature-card">
-            <h2>Praksis</h2>
-            <p>Show and tell med konkrete erfaringer fra kode, test og workflows.</p>
-          </div>
-          <div className="feature-card">
-            <h2>Vaerdi</h2>
-            <p>Udvaelg 3-5 use cases med ejerskab og reel effekt i hverdagen.</p>
-          </div>
         </div>
 
         <footer className="slide-footer">
