@@ -1,0 +1,130 @@
+.landing {
+  min-height: 100svh;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.2rem, 4vw, 3rem) 4rem;
+  color: #1a2b3a;
+  font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+}
+
+.landing-hero {
+  margin-bottom: clamp(2rem, 4vw, 3.2rem);
+}
+
+.landing-eyebrow {
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #4a6b85;
+}
+
+.landing-hero h1 {
+  margin: 0 0 0.6rem;
+  font: 700 clamp(2.4rem, 5vw, 3.8rem) / 1.05 'Rockwell', 'Georgia', serif;
+  color: #15334a;
+}
+
+.landing-subtitle {
+  margin: 0;
+  max-width: 60ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.5;
+  color: #34556d;
+}
+
+.landing-subtitle code,
+.landing-empty code {
+  background: rgba(21, 51, 74, 0.08);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+.landing-empty {
+  padding: 2rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dashed rgba(21, 51, 74, 0.25);
+  color: #34556d;
+}
+
+.deck-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.6rem);
+}
+
+.deck-card {
+  --deck-accent: linear-gradient(140deg, #15334a 0%, #3c9ea3 100%);
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(10, 22, 35, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.deck-card:hover,
+.deck-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px rgba(10, 22, 35, 0.14);
+}
+
+.deck-card-link {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.4rem 1.4rem 1.5rem;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  position: relative;
+}
+
+.deck-card-link::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: var(--deck-accent);
+}
+
+.deck-card-eyebrow {
+  display: inline-block;
+  margin-top: 0.4rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #4a6b85;
+}
+
+.deck-card h2 {
+  margin: 0;
+  font: 700 1.35rem / 1.2 'Rockwell', 'Georgia', serif;
+  color: #15334a;
+}
+
+.deck-card p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: #46627a;
+}
+
+.deck-card-cta {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1d5471;
+}
+
+@media (max-width: 600px) {
+  .landing {
+    padding: 2rem 1.1rem 3rem;
+  }
+}

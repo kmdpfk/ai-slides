@@ -1,59 +1,56 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-import qrKickoff from './assets/qr-ai-kickoff.png'
+import LandingPage from './LandingPage.jsx'
+import { getDeck } from './decks/registry.js'
+
+function parseHash() {
+  const raw = window.location.hash.replace(/^#\/?/, '')
+  if (!raw) return { route: 'home' }
+  const [section, slug] = raw.split('/')
+  if (section === 'deck' && slug) return { route: 'deck', slug }
+  return { route: 'home' }
+}
 
 function App() {
-  return (
-    <main className="deck" aria-label="Slide deck">
-      <article className="slide" aria-label="Slide 1">
-        <header className="slide-eyebrow">Education • AI Taskforce</header>
+  const [location, setLocation] = useState(parseHash)
 
-        <h1>AI Taskforce er etableret</h1>
+  useEffect(() => {
+    const onHashChange = () => setLocation(parseHash())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
-        <p className="subtitle">
-          Vi samler en tværgående erfaringsgruppe i Education, så vi struktureret,
-          konkret og kritisk kan skabe mere værdi med AI i vores daglige arbejde.
-        </p>
+  useEffect(() => {
+    const title =
+      location.route === 'deck'
+        ? (getDeck(location.slug)?.title ?? 'Deck not found')
+        : 'AI Slides'
+    document.title = title
+  }, [location])
 
-        <div className="slide-layout">
-          <section className="content-block">
-            <h2>Formål og fokus</h2>
-            <ul className="purpose-list">
-              <li>
-                Opbygge erfaringer med AI som værktøj i udvikling, samarbejde og
-                processer.
-              </li>
-              <li>
-                Dele hvad der virker i praksis, og hvad der ikke virker.
-              </li>
-              <li>
-                Fokus er ikke AI i produkterne, men hvordan vi anvender AI i
-                hverdagen.
-              </li>
-            </ul>
-          </section>
+  if (location.route === 'deck') {
+    const deck = getDeck(location.slug)
+    if (!deck) {
+      return (
+        <main className="not-found">
+          <h1>Deck not found</h1>
+          <p>Der findes ingen deck med id «{location.slug}».</p>
+          <a href="#/">← Tilbage til oversigten</a>
+        </main>
+      )
+    }
+    const { Component } = deck
+    return (
+      <div className="app-shell">
+        <a href="#/" className="back-link" aria-label="Tilbage til oversigten">
+          ← Decks
+        </a>
+        <Component />
+      </div>
+    )
+  }
 
-          <aside className="qr-panel" aria-label="Kickoff input via QR">
-            <h2>Input til kickoff</h2>
-            <p>
-              Del datoønsker, ideer, spørgsmål og forslag til use cases via
-              QR-koden.
-            </p>
-
-            <div className="qr-box">
-              <img src={qrKickoff} alt="QR-kode til input om kickoff" className="qr-image" />
-            </div>
-
-            <p className="deadline">Svar gerne senest 9. juni</p>
-          </aside>
-        </div>
-
-        <footer className="slide-footer">
-          <span>Kickoff workshop</span>
-          <span>AI taskforce / erfaringsgruppe</span>
-        </footer>
-      </article>
-    </main>
-  )
+  return <LandingPage />
 }
 
 export default App
